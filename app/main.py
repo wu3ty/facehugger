@@ -1,5 +1,5 @@
 """
-Testimplementation of a Restful API
+Test implementation of a Restful API
 """
 from flask import Flask
 from flask_restful import Api, Resource
@@ -21,4 +21,4 @@ class HelloWorld(Resource):
 api.add_resource(HelloWorld,'/hello')
 
 if __name__=='__main__':
-    app.run(host="0.0.0.0", port=80) #, debug=True)
+    app.run(host="0.0.0.0", port=80, debug=True)
