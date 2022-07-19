@@ -1,9 +1,9 @@
 """
 Test implementation of a Restful API
 """
+import os
 from flask import Flask
 from flask_restful import Api, Resource
-import os
 
 app = Flask(__name__)
 
