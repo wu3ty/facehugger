@@ -11,7 +11,7 @@ api =   Api(app)
 
 class HelloWorld(Resource):
     """
-    Testclass
+    Test API Endpoint
     """
     def get(self):
         """
