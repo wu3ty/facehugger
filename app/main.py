@@ -23,7 +23,7 @@ class HelloWorld(Resource):
 api.add_resource(HelloWorld,'/hello')
 
 if __name__=='__main__':
-    cfg_port = os.getenv('PORT', 5000)
+    cfg_port = os.getenv('PORT', "5000")
 
 
     app.run(host="0.0.0.0", port=cfg_port)#, debug=True)
