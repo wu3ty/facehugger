@@ -17,7 +17,7 @@ class HelloWorld(Resource):
         """
         Getter for hello world
         """
-        data={"data":"Hello World"}
+        data={"data":"Hello World Programming Project"}
         return data
 
 api.add_resource(HelloWorld,'/hello')
