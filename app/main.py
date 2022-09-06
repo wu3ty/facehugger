@@ -21,6 +21,18 @@ class HelloWorld(Resource):
         data={"data": "Hi there, Programming Project!"}
 
         return data
+    
+class HelloEndpoint(Resource):
+    """
+    New Endpoint - CI / CD purpose
+    """
+    def get(self):
+        """
+        Getter for new Endpoint
+        """
+        data={"data": "Hi there from new Endpoint"}
+
+        return data
 
 class HelloBulti(Resource):
     """
@@ -35,6 +47,7 @@ class HelloBulti(Resource):
         return data
 
 api.add_resource(HelloWorld,'/hello')
+api.add_resource(HelloEndpoint,'/endpoint')
 
 for x in range(10):
     api.add_resource(HelloBulti,'/hello')
