@@ -20,8 +20,18 @@ class HelloWorld(Resource):
         data={"data": "Hi there, Programming Project!"}
 
         return data
+    
+class HelloEndpoint(Resource):
+    """
+    New Endpoint - CI / CD purpose
+    """
+    def get(self):
+        data={"data": "Hi there from new Endpoint"}
+
+        return data
 
 api.add_resource(HelloWorld,'/hello')
+api.add_resource(HelloEndpoint,'/endpoint')
 
 if __name__=='__main__':
     cfg_port = os.getenv('PORT', "5000")
