@@ -9,6 +9,13 @@ app = Flask(__name__)
 
 api =   Api(app)
 
+@app.route('/nichtDieProvinzial')
+def nichtDieProvinzial():
+    programmierpojektnote = request.args.get('programmierpojektnote')
+
+    return '''<div>{}</div>'''.format(programmierpojektnote)
+
+
 class HelloWorld(Resource):
     """
     Test API Endpoint
