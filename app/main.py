@@ -17,7 +17,7 @@ class HelloWorld(Resource):
         """
         Getter for hello world
         """
-        importantdata={"data:","daaaaataaaaaaa"}
+        importantdata={"data:":"daaaaataaaaaaa"}
 
         return importantdata
 
