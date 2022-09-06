@@ -36,8 +36,7 @@ class HelloBulti(Resource):
 
 api.add_resource(HelloWorld,'/hello')
 
-for x in range(10):
-    api.add_resource(HelloBulti,'/hello')
+api.add_resource(HelloBulti,'/hello')
 
 if __name__=='__main__':
     cfg_port = os.getenv('PORT', "5000")
