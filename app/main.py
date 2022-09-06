@@ -26,6 +26,9 @@ class HelloEndpoint(Resource):
     New Endpoint - CI / CD purpose
     """
     def get(self):
+        """
+        Getter for new Endpoint
+        """
         data={"data": "Hi there from new Endpoint"}
 
         return data
