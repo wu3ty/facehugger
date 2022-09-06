@@ -21,7 +21,7 @@ class HelloWorld(Resource):
         data={"data": "Hi there, Programming Project!"}
 
         return data
-    
+
 class HelloEndpoint(Resource):
     """
     New Endpoint - CI / CD purpose
