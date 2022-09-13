@@ -9,13 +9,6 @@ app = Flask(__name__)
 
 api =   Api(app)
 
-@app.route('/nichtDieProvinzial')
-def nichtDieProvinzial():
-    programmierpojektnote = request.args.get('programmierpojektnote')
-
-    return '''<div>{}</div>'''.format(programmierpojektnote)
-
-
 class HelloWorld(Resource):
     """
     Test API Endpoint
@@ -29,32 +22,7 @@ class HelloWorld(Resource):
 
         return data
 
-class HelloEndpoint(Resource):
-    """
-    New Endpoint - CI / CD purpose
-    """
-    def get(self):
-        """
-        Getter for new Endpoint
-        """
-        data={"data": "Hi there from new Endpoint"}
-
-        return data
-
-class HelloBulti(Resource):
-    """
-    Test API Endpoint
-    """
-    def get(self):
-        """
-        Getter for hello world
-        """
-        data={"data": "Hi there, Moritz Bulthaub!"}
-
-        return data
-
 api.add_resource(HelloWorld,'/hello')
-api.add_resource(HelloEndpoint,'/endpoint')
 
 
 if __name__=='__main__':
@@ -62,4 +30,4 @@ if __name__=='__main__':
 
 
     app.run(host="0.0.0.0", port=cfg_port)#, debug=True)
-#Test
+    #Test
