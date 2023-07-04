@@ -30,9 +30,9 @@ jobs:
         python -m pytest tests
   
   packaging:
-      runs-on: ubuntu-latest
-      if: success() && github.ref_name == 'main'
-          permissions:
+    runs-on: ubuntu-latest
+    if: success() && github.ref_name == 'main'
+    permissions:
       contents: read
       packages: write
 
