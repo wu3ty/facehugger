@@ -10,16 +10,17 @@
 name: Create and publish a Docker image
 
 on:
-  pull_request:
-    types: closed
-    branches:
-      - main
+  workflow_run:
+    workflows: ["Linting und Testing"]
+    types:
+      - completed
 
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}
 
 jobs:
+if: ${{ github.event.workflow_run.conclusion == 'success' }}
   build-and-push-image:
     runs-on: ubuntu-latest
     permissions:
