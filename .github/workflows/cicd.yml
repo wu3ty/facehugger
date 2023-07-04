@@ -3,6 +3,10 @@ name: Linting, Testing, Building
 
 on: [push]
 
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
+
 jobs:
   listing_testing:
     runs-on: ubuntu-latest
@@ -29,6 +33,7 @@ jobs:
       run: |
         python -m pytest tests
   
+  # only build and push image if main branch
   packaging:
     runs-on: ubuntu-latest
     if: success() && github.ref_name == 'main'
