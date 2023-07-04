@@ -1,11 +1,10 @@
 """
 Test implementation of a Restful API
 """
-import os
 from flask import Flask
 from flask_restful import Api, Resource
 
-cfg_port = 5000
+CFG_PORT = 5000
 app = Flask(__name__)
 api = Api(app)
 
@@ -24,6 +23,5 @@ class HelloWorld(Resource):
 
 api.add_resource(HelloWorld,'/hello')
 
-
 if __name__=='__main__':
-    app.run(host="0.0.0.0", port=cfg_port)
+    app.run(host="0.0.0.0", port=CFG_PORT)
