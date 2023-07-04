@@ -20,8 +20,8 @@ env:
   IMAGE_NAME: ${{ github.repository }}
 
 jobs:
-if: ${{ github.event.workflow_run.conclusion == 'success' }}
   build-and-push-image:
+  if: ${{ github.event.workflow_run.conclusion == 'success' }}  
     runs-on: ubuntu-latest
     permissions:
       contents: read
