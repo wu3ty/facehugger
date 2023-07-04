@@ -22,47 +22,78 @@ jobs:
     - name: Analysing the code with pylint
       run: |
         pylint $(git ls-files '*.py')
-         
-  deploy:
-      runs-on: ubuntu-latest
-      if: success() && github.ref_name == 'main'
-      steps:
-      - uses: actions/checkout@v3
-      - name: Build, Push and Release a Docker container to Heroku. # Your custom step name
-        uses: gonuit/heroku-docker-deploy@v1.3.3 # GitHub action name (leave it as it is).
+
+  build-and-push-image:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Log in to the Container registry
+        uses: docker/login-action@65b78e6e13532edd9afa3aa52ac7964289d1a9c1
         with:
-          # Below you must provide variables for your Heroku app.
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
 
-          # The email address associated with your Heroku account.
-          # If you don't want to use repository secrets (which is recommended) you can do:
-          # email: my.email@example.com
-          email: ${{ secrets.HEROKU_EMAIL }}
+      - name: Extract metadata (tags, labels) for Docker
+        id: meta
+        uses: docker/metadata-action@9ec57ed1fcdbf14dcef7dfbe97b2010124a938b7
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@f2a1d5e99d037542a71f64918e516c093c6f3fc4
+        with:
+          context: .
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+                    
+  # deploy:
+  #     runs-on: ubuntu-latest
+  #     if: success() && github.ref_name == 'main'
+  #     steps:
+  #     - uses: actions/checkout@v3
+  #     - name: Build, Push and Release a Docker container to Heroku. # Your custom step name
+  #       uses: gonuit/heroku-docker-deploy@v1.3.3 # GitHub action name (leave it as it is).
+  #       with:
+  #         # Below you must provide variables for your Heroku app.
+
+  #         # The email address associated with your Heroku account.
+  #         # If you don't want to use repository secrets (which is recommended) you can do:
+  #         # email: my.email@example.com
+  #         email: ${{ secrets.HEROKU_EMAIL }}
           
-          # Heroku API key associated with provided user's email.
-          # Api Key is available under your Heroku account settings.
-          heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
+  #         # Heroku API key associated with provided user's email.
+  #         # Api Key is available under your Heroku account settings.
+  #         heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
           
-          # Name of the heroku application to which the build is to be sent.
-          heroku_app_name: ${{ secrets.HEROKU_APP_NAME }}
+  #         # Name of the heroku application to which the build is to be sent.
+  #         heroku_app_name: ${{ secrets.HEROKU_APP_NAME }}
 
-          # (Optional, default: "./")
-          # Dockerfile directory.
-          # For example, if you have a Dockerfile in the root of your project, leave it as follows:
-          dockerfile_directory: ./
+  #         # (Optional, default: "./")
+  #         # Dockerfile directory.
+  #         # For example, if you have a Dockerfile in the root of your project, leave it as follows:
+  #         dockerfile_directory: ./
 
-          # (Optional, default: "Dockerfile")
-          # Dockerfile name.
-          dockerfile_name: Dockerfile
+  #         # (Optional, default: "Dockerfile")
+  #         # Dockerfile name.
+  #         dockerfile_name: Dockerfile
 
-          # (Optional, default: "")
-          # Additional options of docker build command.
-          docker_options: "--no-cache"
+  #         # (Optional, default: "")
+  #         # Additional options of docker build command.
+  #         docker_options: "--no-cache"
 
-          # (Optional, default: "web")
-          # Select the process type for which you want the docker container to be uploaded.
-          # By default, this argument is set to "web".
-          # For more information look at https://devcenter.heroku.com/articles/process-model
-          process_type: web
+  #         # (Optional, default: "web")
+  #         # Select the process type for which you want the docker container to be uploaded.
+  #         # By default, this argument is set to "web".
+  #         # For more information look at https://devcenter.heroku.com/articles/process-model
+  #         process_type: web
           
 
           
