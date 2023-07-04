@@ -5,3 +5,37 @@ This repository contains a minimum RESTful API using Python and Flask. It expose
 Upon successfull merge into main, a Docker container is built and pushed to Githubs container registry Github Packages.
 
 Finally, the app is deployed to a Kubernetes cluster.
+
+## Local API setup
+
+Running the API locally requires Python 3.9, install that first. Then:
+
+``` bash
+python3 -m venv test-api # create virtual environment
+source test-api/bin/activate # activate virtual environment
+pip3 install -r requirements.txt # install python packages
+
+python3 app/main.py # start API
+```
+
+Now, you can access _http://127.0.0.1:5000/hello_.
+
+## Local Docker setup
+
+Building and running Docker containers requires Docker to be installed. Then:
+``` bash
+docker build -t meine-api . # build Docker container
+docker run -it -p 5000:5000 meine-api # run Docker container
+```
+
+Now, you can access _http://127.0.0.1:5000/hello_.
+
+## Run latest built Docker container
+
+Requires Docker to be installed. Then:
+``` bash
+docker pull ghcr.io/wu3ty/facehugger:main # pull latest from Github
+docker run -it -p 5000:5000 ghcr.io/wu3ty/facehugger:main # run Docker container
+```
+
+Now, you can access _http://127.0.0.1:5000/hello_.
