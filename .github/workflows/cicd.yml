@@ -36,37 +36,12 @@ jobs:
       # if: success() && github.ref_name == 'main'
       runs-on: ubuntu-latest
       steps:
-        - name: Checkout code
-          uses: actions/checkout@v2
-  
-        - name: Set up Google Cloud SDK
-          uses: google-github-actions/setup-gcloud@main
-          with:
-            project_id: programmierprojekt-2023
-            service_account_key: ${{ secrets.GCP_SA_KEY }}
-            export_default_credentials: true
-  
-        - name: Configure docker for GCP
-          run: gcloud auth configure-docker
-  
-        - name: Build and push Docker image
-          uses: docker/build-push-action@v2
-          with:
-            context: .
-            push: true
-            tags: gcr.io/programmierprojekt-2023/facehugger:latest
-            build-args: |
-              HTTP_PORT=5000
-  
-        - name: Deploy to Cloud Run
-          uses: google-github-actions/deploy-cloudrun@main
-          with:
-            image: gcr.io/programmierprojekt-2023/facehugger:latest
-            service: go-rest-api
-            region: europe-west3
-            platform: managed
-            allow-unauthenticated: true
-            env_vars: |
-                FOO=bar
-                ZIP=zap
+           - name: 'Checkout'
+             uses: 'actions/checkout@v3'   
       
+           - name: 'Google auth'
+             id: 'auth'
+             uses: 'google-github-actions/auth@v1'
+             with:
+               workload_identity_provider: '${{ secrets.WIF_PROVIDER }}'
+               service_account: '${{ secrets.WIF_SERVICE_ACCOUNT }}'
