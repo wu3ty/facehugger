@@ -69,7 +69,6 @@ jobs:
              with:
               push: true
               tags: |
-#                 europe-west3-docker.pkg.dev/programmierprojekt-2023/pp-2023-registry/facehugger:${{ steps.get-tag.outputs.short_ref }}
                  europe-west3-docker.pkg.dev/programmierprojekt-2023/pp-2023-registry/facehugger:latest
                  
            #- name: 'Build and push container'
