@@ -9,7 +9,7 @@ RUN pip install -r requirements.txt
 
 # Create a working directory and copy application into container
 WORKDIR /app
-COPY app/ .
+COPY ./app/ .
 
 # Start API
 ENTRYPOINT ["python3", "main.py"]
