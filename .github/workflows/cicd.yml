@@ -4,6 +4,7 @@ name: Linting, Testing, Building
 on: [push]
 
 jobs:
+
   listing_testing:
     runs-on: ubuntu-latest
     strategy:
@@ -31,6 +32,9 @@ jobs:
   
   # only build and push image if main branch
   push_to_registry_and_deploy:
+      permissions:
+           contents: 'read'
+           id-token: 'write'  
       name: Push Docker image to Docker Hub
       # TODO: wieder rein
       # if: success() && github.ref_name == 'main'
