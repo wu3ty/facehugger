@@ -8,6 +8,7 @@ env:
   SERVICE: go-rest-api # TODO: update Cloud Run service name
   REGION: europe-west3 # TODO: update Cloud Run service region
   GAR_LOCATION: europe-west3
+  GAR_LOCATION_NAME: pp-2023-registry
   APP: facehugger
   RELEASE_NAME: dev
   
@@ -64,17 +65,17 @@ jobs:
            - name: 'Docker auth'
              run: |-
                gcloud auth configure-docker ${{ env.GAR_LOCATION }}-docker.pkg.dev               
-           - name: 'Build and push container'   
-             uses: docker/build-push-action@v2
-             with:
-              push: true
-              tags: |
-                 europe-west3-docker.pkg.dev/programmierprojekt-2023/pp-2023-registry/facehugger:latest
+#           - name: 'Build and push container'   
+#             uses: docker/build-push-action@v2
+#             with:
+#              push: true
+#              tags: |
+#                 europe-west3-docker.pkg.dev/programmierprojekt-2023/pp-2023-registry/facehugger:latest
                  
-           #- name: 'Build and push container'
-           #  run: |-
-           #    docker build -t "${{ env.GAR_LOCATION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.APP }}/${{ env.APP }}:${{ github.sha }}" ./app
-           #    docker push "${{ env.GAR_LOCATION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.APP }}/${{ env.APP }}:${{ github.sha }}"
+           - name: 'Build and push container'
+             run: |-
+               docker build -t "${{ env.GAR_LOCATION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.GAR_LOCATION_NAME }}/${{ env.APP }}:${{ github.sha }}" ./app
+               docker push "${{ env.GAR_LOCATION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.GAR_LOCATION_NAME }}/${{ env.APP }}:${{ github.sha }}"
 
            - name: 'Create release name'
              run: |-
