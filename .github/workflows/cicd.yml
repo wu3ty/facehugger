@@ -32,14 +32,15 @@ jobs:
   # only build and push image if main branch
   push_to_registry_and_deploy:
       name: Push Docker image to Docker Hub
-      if: success() && github.ref_name == 'main'
+      # TODO: wieder rein
+      # if: success() && github.ref_name == 'main'
       runs-on: ubuntu-latest
       steps:
         - name: Checkout code
           uses: actions/checkout@v2
   
         - name: Set up Google Cloud SDK
-          uses: google-github-actions/setup-gcloud@master
+          uses: google-github-actions/setup-gcloud@main
           with:
             project_id: programmierprojekt-2023
             service_account_key: ${{ secrets.GCP_SA_KEY }}
