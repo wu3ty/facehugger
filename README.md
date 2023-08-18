@@ -32,10 +32,10 @@ Now, you can access _http://127.0.0.1:5000/hello_.
 
 ## Run latest built Docker container
 
-Requires Docker to be installed. Then:
+Requires Docker to be installed. The pull from Docker Hub https://hub.docker.com/r/wu3ty/facehugger:
 ``` bash
-docker pull ghcr.io/wu3ty/facehugger:main # pull latest from Github
-docker run -it -p 5000:5000 ghcr.io/wu3ty/facehugger:main # run Docker container
+docker pull wu3ty/facehugger:main # pull latest image from Docker Hub
+docker run -it -p 5000:5000  wu3ty/facehugger:main # run container
 ```
 
 Now, you can access _http://127.0.0.1:5000/hello_.
