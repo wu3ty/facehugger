@@ -74,7 +74,7 @@ jobs:
                  
            - name: 'Build and push container'
              run: |-
-               docker build -t "${{ env.GAR_LOCATION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.GAR_LOCATION_NAME }}/${{ env.APP }}:${{ github.sha }}" ./app
+               docker build -f ./Dockerfile -t "${{ env.GAR_LOCATION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.GAR_LOCATION_NAME }}/${{ env.APP }}:${{ github.sha }}" ./app
                docker push "${{ env.GAR_LOCATION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.GAR_LOCATION_NAME }}/${{ env.APP }}:${{ github.sha }}"
 
            - name: 'Create release name'
