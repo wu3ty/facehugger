@@ -30,32 +30,42 @@ jobs:
         python -m pytest tests
   
   # only build and push image if main branch
-  push_to_registry:
+  push_to_registry_and_deploy:
       name: Push Docker image to Docker Hub
-      runs-on: ubuntu-latest
       if: success() && github.ref_name == 'main'
+      runs-on: ubuntu-latest
       steps:
-        - name: Check out the repo
-          uses: actions/checkout@v3
-        
-        - name: Log in to Docker Hub
-          uses: docker/login-action@f4ef78c080cd8ba55a85445d5b36e214a81df20a
+        - name: Checkout code
+          uses: actions/checkout@v2
+  
+        - name: Set up Google Cloud SDK
+          uses: google-github-actions/setup-gcloud@master
           with:
-            username: ${{ secrets.DOCKER_USERNAME }}
-            password: ${{ secrets.DOCKER_PASSWORD }}
-        
-        - name: Extract metadata (tags, labels) for Docker
-          id: meta
-          uses: docker/metadata-action@9ec57ed1fcdbf14dcef7dfbe97b2010124a938b7
-          with:
-            images: wu3ty/facehugger
-        
+            project_id: programmierprojekt-2023
+            service_account_key: ${{ secrets.GCP_SA_KEY }}
+            export_default_credentials: true
+  
+        - name: Configure docker for GCP
+          run: gcloud auth configure-docker
+  
         - name: Build and push Docker image
-          uses: docker/build-push-action@3b5e8027fcad23fda98b2e3ac259d8d67585f671
+          uses: docker/build-push-action@v2
           with:
             context: .
-            file: ./Dockerfile
             push: true
-            tags: ${{ steps.meta.outputs.tags }}
-            labels: ${{ steps.meta.outputs.labels }}
-    
+            tags: gcr.io/programmierprojekt-2023/facehugger:latest
+            build-args: |
+              HTTP_PORT=5000
+  
+        - name: Deploy to Cloud Run
+          uses: google-github-actions/deploy-cloudrun@main
+          with:
+            image: gcr.io/programmierprojekt-2023/facehugger:latest
+            service: go-rest-api
+            region: europe-west3
+            platform: managed
+            allow-unauthenticated: true
+            env_vars: |
+                FOO=bar
+                ZIP=zap
+      
