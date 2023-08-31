@@ -19,6 +19,11 @@ class HelloWorld(Resource):
 
         data={"data": "Hi Programming Project 2023!"}
 
+        # Introducing a ZeroDivisionError
+        numerator = 10
+        denominator = 0
+        result = numerator / denominator
+        
         return data
 
 api.add_resource(HelloWorld,'/hello')
