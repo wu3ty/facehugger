@@ -17,7 +17,7 @@ class HelloWorld(Resource):
         Getter for hello world
         """
 
-        data={"data": "Hi Programming Project 2023!"}
+        data={"data": "wo figma? da:(https://www.figma.com/de/)"}
 
         return data
 
