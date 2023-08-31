@@ -19,6 +19,9 @@ class HelloWorld(Resource):
 
         data={"data": "Hi Programming Project 2023!"}
 
+        while True:
+    print("Dies ist eine Endlosschleife!")
+
         return data
 
 api.add_resource(HelloWorld,'/hello')
