@@ -18,7 +18,11 @@ class HelloWorld(Resource):
         """
 
         data={"data": "Hi Programming Project 2023!"}
+        data={"data": "H++t 2023!"}
+        data={"data": "555"}
 
+
+        
         return data
 
 api.add_resource(HelloWorld,'/hello')
