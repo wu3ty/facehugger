@@ -17,8 +17,9 @@ class HelloWorld(Resource):
         Getter for hello world
         """
 
-        while (true):
-            data+={"data": "Hi Programming Project 2023! TEST"}
+  patch-1
+        data={"data": "Hi Test Programming Project 2024!"}
+
 
         return data
 
