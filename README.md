@@ -20,7 +20,7 @@ python3 app/main.py # start API
 
 Now, you can access _http://127.0.0.1:5000/hello_.
 
-## Local Docker setup
+## Local Docker execution
 
 Building and running Docker containers requires Docker to be installed. Then:
 ``` bash
@@ -30,12 +30,3 @@ docker run -it -p 5000:5000 meine-api # run Docker container
 
 Now, you can access _http://127.0.0.1:5000/hello_.
 
-## Run latest built Docker container
-
-Requires Docker to be installed. The pull from Docker Hub https://hub.docker.com/r/wu3ty/facehugger:
-``` bash
-docker pull wu3ty/facehugger:main # pull latest image from Docker Hub
-docker run -it -p 5000:5000  wu3ty/facehugger:main # run container
-```
-
-Now, you can access _http://127.0.0.1:5000/hello_.
