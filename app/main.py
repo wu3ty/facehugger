@@ -16,8 +16,10 @@ class HelloWorld(Resource):
         """
         Getter for hello world
         """
+        ytest
+        data = {"data": "Hi my name is Test!"}
 
-        data = {"data": "Hi Programming Project 2024! TEST, Katze"}
+
 
         return data
 
