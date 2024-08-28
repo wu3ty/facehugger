@@ -1,7 +1,7 @@
 """
 Unit tests for Flask app
 """
-from app.main import app, api, HelloWorld, CFG_PORT, NewEndpoint
+from app.main import app, api, HelloWorld, CFG_PORT
 
 def test_setup():
     """
