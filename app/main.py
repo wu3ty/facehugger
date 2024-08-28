@@ -1,7 +1,7 @@
 """
 Test implementation of a Restful API
 """
-from flask import Flask, make_response
+from flask import Flask
 from flask_restful import Api, Resource
 
 CFG_PORT = 5001
