@@ -16,13 +16,17 @@ class HelloWorld(Resource):
         """
         Getter for hello world
         """
-
         data = {"data": "Hi Programming Project 2023! TEST"}
 
         return data
+class Gadse(Resource):
+    def get(self):
+        data = {"data": "Gadse streicheln"}
+        return data
 
 
-api.add_resource(HelloWorld,'/hello' '/gadse')
+api.add_resource(HelloWorld,'/hello')
+api.add_resource(Gadse,'/gadse')
 
 if __name__=='__main__':
     app.run(host="0.0.0.0", port=CFG_PORT)
