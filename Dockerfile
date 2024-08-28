@@ -2,7 +2,8 @@ FROM ubuntu
 
 # Install Linux dependencies
 RUN apt-get update 
-RUN apt-get -y install python3.10 python3-pip python3-venv
+RUN apt-get -y install python3.10 python3-pip 
+RUN apt-get -y install python3-venv
 
 # Install Python requirements
 COPY requirements.txt .
