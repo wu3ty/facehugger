@@ -8,6 +8,7 @@ RUN apt-get -y install python3-venv
 # Install Python requirements
 COPY requirements.txt .
 
+# allow that we can install pip packages globally
 RUN python3 -m pip config set global.break-system-packages true
 RUN pip3 install -r requirements.txt
 
