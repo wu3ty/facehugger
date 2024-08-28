@@ -21,7 +21,8 @@ class HelloWorld(Resource):
 
         return data
 
-api.add_resource(HelloWorld,'/hello')
+
+api.add_resource(HelloWorld,'/hello' '/gadse')
 
 if __name__=='__main__':
     app.run(host="0.0.0.0", port=CFG_PORT)
