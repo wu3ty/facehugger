@@ -1,4 +1,4 @@
-# Simple RESTful API using Python Flask
+# Simple RESTful API using Python Flask 
 
 This repository contains a minimum RESTful API using Python and Flask. It exposes the endpoint http://HOST:5000/hello. This repository uses a Github Flow branching strategy and Github Actions to run _pylint_ to lint the code and _pytest_ to execute unit tests.
 
