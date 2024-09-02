@@ -18,7 +18,7 @@ class HelloWorld(Resource):
         """
 
 
-        data = {"data": "Hi Programming Project 2024!"}
+        data = {"data": "Hallo Programming Project 2024!"}
 
 
         return data
