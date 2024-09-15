@@ -14,7 +14,7 @@ class HelloWorld(Resource):
     """
     def get(self):
         """
-        Getter for hello world
+        Getter for Hello World endpoint
         """
 
 
