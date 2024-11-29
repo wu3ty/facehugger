@@ -21,7 +21,7 @@ class HelloWorld(Resource):
         data = {"data": "Hallo Programming Project 2024!"}
 
 
-        return data
+        return get()
 
 class NewEndpoint(Resource):
     """
